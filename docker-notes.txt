@@ -1,0 +1,38 @@
+FROM create from this image
+RUN Execute command in this image
+
+docker build -t "tag-name" <directory, . for current directory>
+
+docker run -dp 8000:8000 "tag-name"
+d - Detached
+p - Port
+
+docker ps - List container
+
+docker psi - List images
+
+docker rm <container-id> - Remove container id
+
+docker push prabuponnusamy/base-redhat
+
+docker tag <Tag name : Example : prabuponnusamy/base-redhat>
+
+docker run -d --name=redhat1 prabuponnusamy/base-redhat bash -c "tail -f /dev/null"
+
+docker run -d --name=redhat1 -v count-data:/etc/data prabuponnusamy/base-redhat bash -c "shuf -i 1-10000 -n 1 -o /etc/data/data.txt && tail -f /dev/null"
+
+docker run -d --name=redhat2 -v count-data:/etc/data prabuponnusamy/base-redhat bash -c "shuf -i 1-10000 -n 1 -o /etc/data/data.txt && tail -f /dev/null"
+
+// To view the content of the container
+docker exec <container-id> cat /etc/data/data.txt
+
+// Create volume
+docker volume create count-data
+
+// Inspect count data
+docker volume inspect count-data
+
+// Make local directory as volume
+docker run -d --name=redhat1 -v "$(pwd):/etc" prabuponnusamy/base-redhat bash -c "shuf -i 1-10000 -n 1 -o /etc/data/data.txt && tail -f /dev/null"
+-- data.txt
+
